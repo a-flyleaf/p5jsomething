@@ -72,10 +72,36 @@ function draw(){
 
     //creating a single point
     fill(0,255,0);
-    ellipse(100,100, 25,25) //should use variables for the location but for now I just wanna get it working
+    /*
+    let pointX = random(25,475);
+    let pointY = random(25,475);
+    */
+    let pointX = 100;
+    let pointY = 100;
+    ellipse(pointX,pointY,25,25); //should use variables for the location but for now I just wanna get it working
 
     //score counter
     let score = 0;
     textAlign(LEFT);
     text('score: ' + score,30,470);
+
+    //position tracker
+    fill(238); //next update: change this and the square/ellipse to objects with variables so I don't have to keep changing this per-item
+    text('X ' + x + '\n' + 'Y ' + y,30,440);
+
+    /*attempts to detect collisions/overlap; always returned true for some reason??
+    //detecting overlap?
+    if (
+        (rect.x = pointX) ||
+        (rect.y = pointY)
+    ) {
+        //red??
+        fill(255,0,0);
+    } else {
+        fill(0,255,255);
+    }
+
+    //attempting to calculate distance for collision detection https://www.youtube.com/watch?v=uAfw-ko3kB8
+    var d = dist(rect.x,rect.y,ellipse.x,ellipse.y);
+    */
 }
