@@ -36,6 +36,17 @@ function draw(){
     if (keyIsDown(RIGHT_ARROW)) {x+=5;}
     if (keyIsDown(UP_ARROW)) {y-=5;}
     if (keyIsDown(DOWN_ARROW)) {y+=5;}
+
+    /*doesn't seem to work for some reason, skipping for now
+    //new controls
+    function keyPressed() {
+        if (keyCode === LEFT_ARROW) {
+            fill(0);
+        } else if (keyCode === RIGHT_ARROW) {
+            fill(255,0,0);
+        }
+    }
+    */
     
     //checks if square hits walls
     if (
@@ -58,4 +69,8 @@ function draw(){
 
     //creates square
     rect(x,y,25,25);
+
+    //creating a single point
+    fill(0,255,0);
+    ellipse(100,100, 25,25) //should use variables for the location but for now I just wanna get it working
 }
