@@ -73,4 +73,9 @@ function draw(){
     //creating a single point
     fill(0,255,0);
     ellipse(100,100, 25,25) //should use variables for the location but for now I just wanna get it working
+
+    //score counter
+    let score = 0;
+    textAlign(LEFT);
+    text('score: ' + score,30,470);
 }
