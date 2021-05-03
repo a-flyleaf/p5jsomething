@@ -139,5 +139,9 @@ function changeColor() {
     //success validator
     text('hell yea',30,55);
 
-    //using HSB to make sure the FG stays lighter than the BG, it'd be jarring otherwise
+    colorBG = random(0,64);
+    colorFG = random(191,255);
+    //this should only happen ONCE or you are going to give people seizures
+
+    //use HSB to make sure the FG stays lighter than the BG, it'd be jarring otherwise
 }
