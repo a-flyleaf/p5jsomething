@@ -2,11 +2,14 @@
 function setup(){
     let myCanvas=createCanvas(500,500);
     myCanvas.parent('snekbox');
+    colorMode(HSB);
 }
 
 //starting position
 let x = 50;
 let y = 50;
+
+let score = 0;
 
 //overlap checker
 let hitPoint = false;
@@ -20,14 +23,13 @@ let pointYcalc = pointY - pointY/4;
 //^this is because ellipses are measured from the center, and gives a quarter leeway in every direction; square shouldn't have to be dead center since that's tricky to pin down
 //note that the quarter calculation was based on a "test" position of 100,100; it'll be fluky if you move it. could use variables for that too; at that point might as well figure out object-oriented programming
 
-//defining HSV colors
-    //sticking with RGB real quick for variable testing
-let colorBG = 32;
-let colorFG = 238;
+//defining hue https://image-color.com/color-picker
+let colorBG = 235;
+let colorFG = 65;
 
 //will be run continuously unless stopped
 function draw(){
-    background(colorBG);
+    background(colorBG,50,15);
 
     //setting boundaries
     let leftWall=25;
@@ -36,9 +38,11 @@ function draw(){
     let bottomWall=475;
         //this could probably be simplified to two variables but I'm keeping it separate to clarify wall-checking
 
-    //visible boundaries
-    fill(colorFG);
+    //square & wall appearance
+    fill(colorFG,50,100);
     noStroke();
+
+    //visible boundaries
     rect(0,0,leftWall,height);
     rect(0,0,width,topWall);
     rect(rightWall,0,width,height);
@@ -71,12 +75,13 @@ function draw(){
         (y >= bottomWall - 25)
         //subtraction based on square dimensions, measured from top left
     ) {
-        //turn square red
-        fill(255,0,0);
+        //turn square white
+        fill(0,0,100);
 
-        //lose messae
+        //lose message
         textAlign(RIGHT);
-        text('ya done hecked up',475,490);
+        text('ya done hecked up',470,470);
+        //making this darker overrode the square fill so it's been moved into the box
         
         //stops all movement
         noLoop();
@@ -91,6 +96,7 @@ function draw(){
     ) {
         hitPoint = true;
         changeColor();
+        //score += 1; < this increases indefinitely, same as the random problem
     } else {
         hitPoint = false;
     }
@@ -99,7 +105,7 @@ function draw(){
     rect(x,y,25,25);
 
     //creating a single point
-    fill(0,255,0);
+    fill(0,0,100);
     /*
     let pointX = random(25,475);
     let pointY = random(25,475);
@@ -107,12 +113,10 @@ function draw(){
     ellipse(pointX,pointY,25,25); //should use variables for the location but for now I just wanna get it working
 
     //score counter
-    let score = 0;
     textAlign(LEFT);
     text('score: ' + score,30,470);
 
     //overlap checker
-    fill(colorFG);
     text('hit point? ' + hitPoint,30,40);
 
     //position tracker
@@ -139,9 +143,12 @@ function changeColor() {
     //success validator
     text('hell yea',30,55);
 
-    colorBG = random(0,64);
-    colorFG = random(191,255);
+    colorBG = frameCount*2/2;
+    colorFG = frameCount*2;
     //this should only happen ONCE or you are going to give people seizures
+    //alternatively: use frame count, for smoothness https://js6450.github.io/basic-p5.html
 
-    //use HSB to make sure the FG stays lighter than the BG, it'd be jarring otherwise
+    if (frameCount >= 200) {
+        frameCount = 0;
+    }
 }
