@@ -20,11 +20,14 @@ let pointYcalc = pointY - pointY/4;
 //^this is because ellipses are measured from the center, and gives a quarter leeway in every direction; square shouldn't have to be dead center since that's tricky to pin down
 //note that the quarter calculation was based on a "test" position of 100,100; it'll be fluky if you move it. could use variables for that too; at that point might as well figure out object-oriented programming
 
+//defining HSV colors
+    //sticking with RGB real quick for variable testing
+let colorBG = 32;
+let colorFG = 238;
+
 //will be run continuously unless stopped
 function draw(){
-    //rgba background color
-        //must be set here (NOT css) or the square leaves a trail
-    background(32);
+    background(colorBG);
 
     //setting boundaries
     let leftWall=25;
@@ -34,7 +37,7 @@ function draw(){
         //this could probably be simplified to two variables but I'm keeping it separate to clarify wall-checking
 
     //visible boundaries
-    fill(238);
+    fill(colorFG);
     noStroke();
     rect(0,0,leftWall,height);
     rect(0,0,width,topWall);
@@ -87,9 +90,7 @@ function draw(){
         //this is such a hacky way to make it work But It Works and collisions don't
     ) {
         hitPoint = true;
-        
-        //:D
-        text('hell yea',30,55);
+        changeColor();
     } else {
         hitPoint = false;
     }
@@ -111,11 +112,10 @@ function draw(){
     text('score: ' + score,30,470);
 
     //overlap checker
-    fill(255);
+    fill(colorFG);
     text('hit point? ' + hitPoint,30,40);
 
     //position tracker
-    fill(238); //next update: change this and the square/ellipse to objects with variables so I don't have to keep changing this per-item
     text('X ' + x + '\n' + 'Y ' + y,30,440);
 
     /*attempts to detect collisions/overlap; always returned true for some reason??
@@ -133,4 +133,11 @@ function draw(){
     //attempting to calculate distance for collision detection https://www.youtube.com/watch?v=uAfw-ko3kB8
     var d = dist(rect.x,rect.y,ellipse.x,ellipse.y);
     */
+}
+
+function changeColor() {
+    //success validator
+    text('hell yea',30,55);
+
+    //using HSB to make sure the FG stays lighter than the BG, it'd be jarring otherwise
 }
