@@ -65,11 +65,21 @@ function draw(){
         //lose messae
         textAlign(RIGHT);
         text('ya done hecked up',475,490);
-
-        hitPoint = true;
         
         //stops all movement
         noLoop();
+    }
+
+    //note: you have to use TWO equal signs for a real "equals", otherwise it force-moves the thing
+    if (
+        (x >= 75) && (x <= 100) &&
+            //<the && means "and"
+        (y >= 75) && (y <= 100)
+        //point dimensions +/- a lil extra, because ellipses are measured from the center, plus giving some leeway (shouldn't have to be dead center). this is such a hacky way to make it work But It Works and collisions don't
+    ) {
+        hitPoint = true;
+    } else {
+        hitPoint = false;
     }
 
     //creates square
