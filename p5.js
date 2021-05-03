@@ -18,6 +18,7 @@ let pointY = 100;
 let pointXcalc = pointX - pointX/4;
 let pointYcalc = pointY - pointY/4;
 //^this is because ellipses are measured from the center, and gives a quarter leeway in every direction; square shouldn't have to be dead center since that's tricky to pin down
+//note that the quarter calculation was based on a "test" position of 100,100; it'll be fluky if you move it. could use variables for that too; at that point might as well figure out object-oriented programming
 
 //will be run continuously unless stopped
 function draw(){
@@ -86,6 +87,9 @@ function draw(){
         //this is such a hacky way to make it work But It Works and collisions don't
     ) {
         hitPoint = true;
+        
+        //:D
+        text('hell yea',30,55);
     } else {
         hitPoint = false;
     }
