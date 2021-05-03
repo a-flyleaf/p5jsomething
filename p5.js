@@ -30,6 +30,7 @@ let colorFG = 65;
 //will be run continuously unless stopped
 function draw(){
     background(colorBG,50,15);
+    //for the record this looks kinda cool if you disable the bg/set it with CSS to bring back the trail; could make a neat art thing
 
     //setting boundaries
     let leftWall=25;
@@ -112,15 +113,19 @@ function draw(){
     */
     ellipse(pointX,pointY,25,25); //should use variables for the location but for now I just wanna get it working
 
+    /*unused, commenting out to avoid confusion
     //score counter
     textAlign(LEFT);
     text('score: ' + score,30,470);
+    */
 
+    textAlign(LEFT);
     //overlap checker
     text('hit point? ' + hitPoint,30,40);
 
     //position tracker
-    text('X ' + x + '\n' + 'Y ' + y,30,440);
+    text('X ' + x + '\n' + 'Y ' + y,30,455);
+    //align at 440 if there's score text below
 
     /*attempts to detect collisions/overlap; always returned true for some reason??
     //detecting overlap?
@@ -151,4 +156,5 @@ function changeColor() {
     if (frameCount >= 200) {
         frameCount = 0;
     }
+    //this doesn't cycle smoothly and idk why; this fixes it in the foreground but there's still a noticeable jump in the bg
 }
