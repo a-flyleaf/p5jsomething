@@ -156,5 +156,6 @@ function changeColor() {
     if (frameCount >= 200) {
         frameCount = 0;
     }
-    //this doesn't cycle smoothly and idk why; this fixes it in the foreground but there's still a noticeable jump in the bg
+    //this doesn't cycle smoothly and idk why; this fixes it in the foreground but there's still a noticeable jump
+    //alternatively: instead of frameCount, have a variable that increases only when changeColor is active?
 }
