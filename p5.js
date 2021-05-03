@@ -11,6 +11,14 @@ let y = 50;
 //overlap checker
 let hitPoint = false;
 
+//whoops these should be defined up here
+let pointX = 100;
+let pointY = 100;
+//surely there is a way to do the following in the actual hitPoint checker but for now:
+let pointXcalc = pointX - pointX/4;
+let pointYcalc = pointY - pointY/4;
+//^this is because ellipses are measured from the center, and gives a quarter leeway in every direction; square shouldn't have to be dead center since that's tricky to pin down
+
 //will be run continuously unless stopped
 function draw(){
     //rgba background color
@@ -72,10 +80,10 @@ function draw(){
 
     //note: you have to use TWO equal signs for a real "equals", otherwise it force-moves the thing
     if (
-        (x >= 75) && (x <= 100) &&
+        (x >= pointXcalc) && (x <= pointX) &&
             //<the && means "and"
-        (y >= 75) && (y <= 100)
-        //point dimensions +/- a lil extra, because ellipses are measured from the center, plus giving some leeway (shouldn't have to be dead center). this is such a hacky way to make it work But It Works and collisions don't
+        (y >= pointYcalc) && (y <= pointY)
+        //this is such a hacky way to make it work But It Works and collisions don't
     ) {
         hitPoint = true;
     } else {
@@ -91,8 +99,6 @@ function draw(){
     let pointX = random(25,475);
     let pointY = random(25,475);
     */
-    let pointX = 100;
-    let pointY = 100;
     ellipse(pointX,pointY,25,25); //should use variables for the location but for now I just wanna get it working
 
     //score counter
