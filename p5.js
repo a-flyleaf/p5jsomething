@@ -8,6 +8,9 @@ function setup(){
 let x = 50;
 let y = 50;
 
+//overlap checker
+let hitPoint = false;
+
 //will be run continuously unless stopped
 function draw(){
     //rgba background color
@@ -62,6 +65,8 @@ function draw(){
         //lose messae
         textAlign(RIGHT);
         text('ya done hecked up',475,490);
+
+        hitPoint = true;
         
         //stops all movement
         noLoop();
@@ -84,6 +89,10 @@ function draw(){
     let score = 0;
     textAlign(LEFT);
     text('score: ' + score,30,470);
+
+    //overlap checker
+    fill(255);
+    text('hit point? ' + hitPoint,30,40);
 
     //position tracker
     fill(238); //next update: change this and the square/ellipse to objects with variables so I don't have to keep changing this per-item
